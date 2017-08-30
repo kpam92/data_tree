@@ -7,8 +7,13 @@ class Tree extends React.Component {
   }
 
   componentDidMount() {
+
   }
 
+  populateNodes() {
+    var { nodes } = this.props;
+
+  }
   handleClick() {
 
   }

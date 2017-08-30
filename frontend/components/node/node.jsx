@@ -7,7 +7,7 @@ class Node extends React.Component {
 
   render() {
     return(
-      
+      <h1>this is a node</h1>
     )
   }
 }
