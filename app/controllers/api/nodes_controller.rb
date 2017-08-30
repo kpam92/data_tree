@@ -7,4 +7,8 @@ class Api::NodesController < ApplicationController
   def show
     @node = Node.find(params[:id])
   end
+
+  def children
+    @nodes = Node.find(params[:id]).children
+  end
 end
