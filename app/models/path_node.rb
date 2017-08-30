@@ -1,0 +1,2 @@
+class PathNode < ApplicationRecord
+end
