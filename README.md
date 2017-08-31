@@ -84,7 +84,7 @@ After opening all of the contents, I created a DFS function that iterated over a
 
 ### 2. Storing data in Database
 
-Now that we have collected the stringified JSON data, the next step is parsing the information into the database. I completed this with a Trie data structure, where I iterated through each object name, split them by `>`, i.e., `ImageNet 2011 Fall Release > plant, flora, plant life`, turned into `["ImageNet 2011 Fall Release,plant", "flora, plant life"]`. From there, we iterate through the names in the path, moving through existing nodes that contain parent classes. If the node for that pathname doesn't exist, we create it, and add a parent child relationship through `author_id`.
+Now that we have collected the stringified JSON data, the next step is parsing the information into the database. Within the seed file in my rails application, I completed this with a Trie data structure, where I iterated through each object name, split them by `>`, i.e., `ImageNet 2011 Fall Release > plant, flora, plant life`, turned into `["ImageNet 2011 Fall Release,plant", "flora, plant life"]`. From there, we iterate through the names in the path, moving through existing nodes that contain parent classes. If the node for that pathname doesn't exist, we create it, and add a parent child relationship through `author_id`.
 
 ```ruby
 sample_data = "[{...all the collected json...}]"
