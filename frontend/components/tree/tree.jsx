@@ -31,7 +31,7 @@ class Tree extends React.Component {
   render() {
     return(
 
-        <ul>
+        <ul className="tree">
           {this.renderNodes()}
         </ul>
 

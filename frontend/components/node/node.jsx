@@ -18,14 +18,14 @@ class Node extends React.Component {
   }
 
   handleClick(e) {
+    e.preventDefault();
+
     var { data, nodes } = this.props;
     if (data.child_count > 0 && !this.state.ul) {
       this.toggleVisibility();
       this.fetchChildren(data.id).then(nodes => {
-        this.setState({ 'ul' :(nodes.map(node => (
-          <Tree key={data.id} nodes={nodes}/>
-          )
-        ))})
+
+        this.setState({ 'ul' :(<Tree key={`tree-${data.id}`} nodes={nodes}/>)});
       })
     } else if (this.state.ul) {
       this.toggleVisibility();
@@ -53,7 +53,7 @@ class Node extends React.Component {
     const child_ul = this.state.ul == 'null' ? '' : this.renderUl()
     return(
       <li>
-        <h5 onClick={this.handleClick}>{data.path} {children}</h5>
+        <a onClick={this.handleClick}>{data.path} {children}</a>
         <div className={this.state.childVisible}>
           {child_ul}
         </div>

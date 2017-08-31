@@ -17,10 +17,36 @@
  * {
    font-family: 'Roboto', sans-serif;
  }
+
+ a:hover {
+   cursor: pointer;
+ }
  ul {
-     border-left: 1px solid #888484;
+     /*border-left: 1px solid #888484;*/
      list-style-type: none;
  }
+ ul.tree, ul.tree ul {
+  list-style-type: none;
+  background: url(http://res.cloudinary.com/dt5viyxyq/image/upload/v1504207991/vline_ryzdvu.png) repeat-y;
+  margin: 0;
+  padding: 0;
+}
+
+ul.tree ul {
+  margin-left: 10px;
+}
+
+ul.tree li {
+  margin: 0;
+  padding: 0 12px;
+  line-height: 20px;
+  background: url(http://res.cloudinary.com/dt5viyxyq/image/upload/v1504208105/node_mohdp1.png) no-repeat;
+  font-weight: bold;
+}
+
+ul.tree li.last {
+  background: #fff url(http://res.cloudinary.com/dt5viyxyq/image/upload/v1504208513/lastnode_g94jew.png) no-repeat;
+}
 
 .hidden {
   display: none;
