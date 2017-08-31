@@ -23,11 +23,4 @@ ActiveRecord::Schema.define(version: 20170831012413) do
     t.integer  "child_count"
   end
 
-  create_table "paths", force: :cascade do |t|
-    t.string   "curr_path",  null: false
-    t.integer  "children",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
