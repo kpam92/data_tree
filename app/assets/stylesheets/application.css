@@ -44,7 +44,7 @@ ul.tree li {
   font-weight: bold;
 }
 
-ul.tree li.last {
+ul.tree li.last-child {
   background: #fff url(http://res.cloudinary.com/dt5viyxyq/image/upload/v1504208513/lastnode_g94jew.png) no-repeat;
 }
 

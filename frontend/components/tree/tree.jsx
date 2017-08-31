@@ -21,8 +21,8 @@ class Tree extends React.Component {
     if (!nodes) {
       return ''
     } else {
-      return nodes.map(node => (
-        <Node key={node.id} data={node}/>
+      return nodes.map((node,idx) => (
+        <Node key={node.id} data={node} lastChild={(nodes.length - 1) == idx ? true : false }/>
       )
     );
     }

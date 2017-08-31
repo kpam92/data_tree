@@ -48,11 +48,11 @@ class Node extends React.Component {
 
   render() {
 
-    const { data } = this.props;
+    const { data, lastChild } = this.props;
     const children = data.child_count > 0 ? `[ ${data.child_count} ]` : '';
     const child_ul = this.state.ul == 'null' ? '' : this.renderUl()
     return(
-      <li>
+      <li className={lastChild ? 'last-child': ''}>
         <a onClick={this.handleClick}>{data.path} {children}</a>
         <div className={this.state.childVisible}>
           {child_ul}
