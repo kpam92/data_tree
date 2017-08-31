@@ -41,11 +41,11 @@ class Tree extends React.Component {
     // );
 
     return(
-      <div>
+
         <ul>
           {this.renderNodes()}
         </ul>
-      </div>
+
     )
   }
 };

@@ -6,31 +6,40 @@ import { fetchChildren } from '../../util/node_api_util';
 class Node extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { ul: null }
+    this.state = {
+      ul: null,
+      childVisible: 'hidden'
+     }
+
     this.handleClick = this.handleClick.bind(this);
+    this.toggleVisibility = this.toggleVisibility.bind(this);
     this.renderUl = this.renderUl.bind(this);
     this.fetchChildren = fetchChildren;
   }
 
   handleClick(e) {
     var { data, nodes } = this.props;
-    // debugger;
-    this.fetchChildren(data.id).then(nodes => {
-      debugger;
-      this.setState({ 'ul' :(nodes.map(node => (
-        <Tree key={data.id} nodes={nodes}/>
-      )
-    ))})
-    })
-    // if (data.child_count > 0 && !this.state.ul) {
-    //   debugger;
-    //   fetchChildren(data.id)
-    //   this.setState({"ul": nodes})
-    // }
+    if (data.child_count > 0 && !this.state.ul) {
+      this.toggleVisibility();
+      this.fetchChildren(data.id).then(nodes => {
+        this.setState({ 'ul' :(nodes.map(node => (
+          <Tree key={data.id} nodes={nodes}/>
+          )
+        ))})
+      })
+    } else if (this.state.ul) {
+      this.toggleVisibility();
+    }
   }
+
+
 
   componentDidMount() {
 
+  }
+  toggleVisibility() {
+    var css = (this.state.childVisible === "hidden") ? "show" : "hidden";
+    this.setState({"childVisible": css});
   }
 
   renderUl() {
@@ -45,7 +54,9 @@ class Node extends React.Component {
     return(
       <li>
         <h5 onClick={this.handleClick}>{data.path} {children}</h5>
-        {child_ul}
+        <div className={this.state.childVisible}>
+          {child_ul}
+        </div>
       </li>
     )
   }
