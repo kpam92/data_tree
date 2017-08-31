@@ -9,7 +9,6 @@ const NodesReducer = (state = {children: null, root_node: null}, action) => {
   switch(action.type) {
     case RECEIVE_CHILD_NODES:
       newState['children']= action.nodes
-      debugger;
       return newState;
     case UPDATE_NODE:
       newState['root_node']= action.node
