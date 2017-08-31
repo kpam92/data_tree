@@ -1,10 +1,21 @@
-We will be scraping, transforming, storing, transforming, and displaying some data.
+# DataTree
 
-### 1. First, we'll need data
+[DataTree Live][host]
 
-ImageNet (http://imagenet.stanford.edu/) is a commonly used dataset in machine learning research. We'll be using its taxonomy system.
+[host]: http://data-tree.herokuapp.com
 
-When you go to http://imagenet.stanford.edu/synset?wnid=n02486410, you'll see a tree on the left. Your job is to scrape this tree and transform it into a linear form, like this:
+
+DataTree is a small full-stack web application with Ruby on Rails in the backend with a PostgreSQL database, and JavaScript with React on the frontend. This application consists of data scraped from ImageNet (http://imagenet.stanford.edu/), parsed into a database, then displayed for the user.
+
+<a href="http://flipthru.herokuapp.com">
+  <img src="https://raw.githubusercontent.com/kpam92/data_tree/master/app/assets/images/screenshot.png"/>
+</a>
+
+## Features & Implementation
+
+### 1. Data Scraping
+
+All data is scraped from the ImageNet tree dataset. The tree consists of a dynamic React component that opens up all children of table elements when clicked. My objective was to scrape the contents of all data names, and include their parents and path, seperated by `>`. Expected output is shown below:
 
 ```
 [
@@ -18,17 +29,128 @@ When you go to http://imagenet.stanford.edu/synset?wnid=n02486410, you'll see a 
 ]
 ```
 
-We'll use `>` as a separator of categories/subcategories.
+Because all of a parent's children in this data doesn't exist on the page until being clicked, back-end snapshot scraping with Nokogiri only gave back the `ImageNet 2011 Fall Release` name. So, in order to retrieve the information, within the DOM console, I created a method that triggered all of the click event listeners of elements containing the `jstree-closed` class, seen below:
 
-It's completely up to you how you download this data, everything is allowed.
+```javascript
+var base = document.getElementById('tree');
+var closedTree = base.getElementsByClassName('jstree-closed');
+while (closed.length !== 0) {
 
-### 2. Second, we'll need to store it somewhere
+  Array.prototype.forEach.call(closedTree, function(el) {
+      el.children[0].click()
+  });
+  closedTree = base.getElementsByClassName('jstree-closed')
+}
+```
 
-Create a database (use any database system you like or want to try) to store these tuples `(string, number)` and fill it with the data you obtained in the first step.
+After opening all of the contents, I created a DFS function that iterated over all the elements in the tree, creating new objects with their classes in addition to their ancestor path found in a recursive manner. All data saved within the `results` array was then stringified to easily move to the application's database.
 
-### 3. Making sense of it
+```javascript
+  var results = [];
 
-Next, we'll convert it back to a tree. Why not. Like this:
+  //root element of tree
+  var root = document.getElementById(82127);
+
+  //function takes in inital UL
+  function traverseTreeUd(element, currClass) {
+    Array.prototype.forEach.call(element.children, function(child) {
+      if (child.tagName == 'LI') {
+        // console.log('hi')
+        traverseTreeLi(child,currClass);
+
+      }
+    });
+  }
+
+  // function that takes the LI
+  function traverseTreeLi(element, currClass = '') {
+    Array.prototype.forEach.call(element.children, function(child) {
+      if (child.tagName == 'A') {
+        let currText = child.text;
+        currText = currText.split(" (");
+        addedClass = currText[0];
+        let newClass = `${currClass} > ${addedClass}`
+        let currChildren = parseInt(currText[1]);
+        results.push({name: newClass, children: currChildren})
+      } else if (child.tagName == "UL") {
+        traverseTreeUd(child, `${currClass} > ${addedClass}`)
+      }
+    });
+  }
+
+  traverseTreeUd(root, currClass);
+  JSON.stringify(results);
+```
+
+### 2. Storing data in Database
+
+Now that we have collected the stringified JSON data, the next step is parsing the information into the database. I completed this with a Trie data structure, where I iterated through each object name, split them by `>`, i.e., `ImageNet 2011 Fall Release > plant, flora, plant life`, turned into `["ImageNet 2011 Fall Release,plant", "flora, plant life"]`. From there, we iterate through the names in the path, moving through existing nodes that contain parent classes. If the node for that pathname doesn't exist, we create it, and add a parent child relationship through `author_id`.
+
+```ruby
+sample_data = "[{...all the collected json...}]"
+sample_data = JSON.parse(sample_data)
+
+sample_data.each do |data|
+  paths   = data["name"].split(" > ")
+  children = data["size"]
+
+  parent = nil
+  idx = 0
+
+  while idx < paths.length
+    curr_path = paths[idx]
+    until curr_path[0] != ' '
+      curr_path = curr_path[1..-1]
+    end
+    curr_node = Node.find_by_path(curr_path)
+
+    if curr_node.nil?
+      curr_node = Node.new
+      curr_node.path = curr_path
+      curr_node.parent_id = parent.id unless parent.nil?
+      curr_node.child_count = children
+      curr_node.save
+    end
+
+    parent = curr_node
+    idx += 1
+  end
+
+end
+```
+
+### 3. Creating a Tree Heirarchy
+
+Next, we'll convert it back to a tree. Rails makes this easy through the `:has_many, :belongs_to` relationships you can create in models. And by indexing the `author_id` foreign key, we can find these relations even faster in O(log(n)).
+```Ruby
+class Node < ApplicationRecord
+  has_many(:children,
+  foreign_key: :parent_id,
+  class_name: 'Node')
+end
+```
+This is syntactic sugar for the equation below
+```
+node.children # an array of the children of a node
+# => SELECT
+#      nodes.*
+#    FROM
+#      nodes
+#    WHERE
+#      nodes.author_id = ?
+#
+# The `?` is filled with `node.id`.
+```
+
+
+I created a custom member route, `/api/nodes/:id/children`, that then finds and returns the child nodes of the node of that `params[:id]`.
+
+```Ruby
+def children
+  @nodes = Node.find(params[:id]).children
+end
+```
+These parts above create a structure like that below:
 
 ```
 {
@@ -54,14 +176,18 @@ Next, we'll convert it back to a tree. Why not. Like this:
 }
 ```
 
-* Can you write an algrorithm that will output such a tree? No cheating here, you have to read this data in a linear form from the database.
-* What is the complexity of your algorithm (in big O notation)?
+### 3. Visualizing for the User
 
-### 3. Now it's time to show the data again
+With over 30,000 nodes in our database, React is a good manner to display the data, because of its easy method of reusing class components, and by integrating clicking event listeners, we will be able to only grab necessary data from the backend to display for the user efficiently. There are two main components, the `Tree` component that holds the initial `ul`, and the `Node` component that stores the individual nodes themselves. Upon clicking a node with children, this triggers a new `Tree` > `Node` element.
 
-* Can you design and build an interface to show this data?
-* Can you implement search in this UI?
+## Future Directions for the Project
 
-<hr>
+I plan to add small adjustments to the project to provide better UX/UI for the user
 
-Feel free to use any tools, frameworks or libraries. Whatever you are most comfortable with or something new that you wanted to try for a long time. Just let me know what you chose, why, and what was your previous experience with it.
+### Search Component
+
+In process of implementing a dynamic search component that will show results for matching elements, and when a search result is clicked, it will open that path on the tree.
+
+### Styling
+
+I plan to keep styling the application interface for better design.
