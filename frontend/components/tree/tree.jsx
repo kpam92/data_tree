@@ -1,10 +1,11 @@
 import React from 'react';
-import Node from '../node/node';
+import NodeContainer from '../node/node_container';
 
 class Tree extends React.Component {
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this);
+    this.renderNodes = this.renderNodes.bind(this);
   }
 
   componentDidMount() {
@@ -19,17 +20,30 @@ class Tree extends React.Component {
 
   }
 
-  render() {
-    const { nodes } = this.props;
-    const nodeDetails = nodes.map(node => (
-        <Node key={node.id} data={node}/>
+  renderNodes() {
+    const { nodes, fetchChildren } = this.props;
+    if (!nodes) {
+      return ''
+    } else {
+      // debugger;
+      return nodes.map(node => (
+        <NodeContainer key={node.id} data={node}/>
       )
     );
+    }
+  }
+
+  render() {
+    // const { nodes, fetchChildren } = this.props;
+    // const nodeDetails = nodes.map(node => (
+    //     <NodeContainer key={node.id} data={node} fetchChildren={fetchChildren}/>
+    //   )
+    // );
 
     return(
       <div>
         <ul>
-          {nodeDetails}
+          {this.renderNodes()}
         </ul>
       </div>
     )
