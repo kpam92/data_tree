@@ -5,12 +5,9 @@ export const UPDATE_NODE = 'UPDATE_NODE';
 
 export const receiveChildNodes = nodes => ({
   type: RECEIVE_CHILD_NODES,
-  photos
+  nodes
 });
-export const receivePhoto = photo => ({
-  type: RECEIVE_PHOTO,
-  photo
-});
+
 export const updateNode = node => ({
   type: UPDATE_NODE,
   node

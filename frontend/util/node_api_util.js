@@ -1,27 +1,13 @@
 
-export const fetchPhotos = () => {
-  return $.ajax({
-    method: 'GET' ,
-    url: 'api/photos'
-  })
-}
 export const fetchNode = (id) => {
   return $.ajax({
     method: 'GET' ,
     url: `api/nodes/${id}`
   })
 }
-export const fetchPhoto = (id) => {
+export const fetchChildren = (id) => {
   return $.ajax({
     method: 'GET' ,
-    url: `api/photos/${id}`
-  })
-}
-
-export const addPhoto= (photo) => {
-  return $.ajax({
-    method: 'POST' ,
-    url: 'api/photos',
-    photo
+    url: `api/nodes/${id}/children`
   })
 }
