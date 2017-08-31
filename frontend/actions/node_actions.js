@@ -1,4 +1,4 @@
-import * as APIUtil from '../util/photo_api_util'
+import * as APIUtil from '../util/node_api_util'
 
 export const RECEIVE_CHILD_NODES = 'RECEIVE_CHILD_NODES';
 export const UPDATE_NODE = 'UPDATE_NODE';
