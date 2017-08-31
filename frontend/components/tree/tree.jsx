@@ -8,10 +8,6 @@ class Tree extends React.Component {
     this.renderNodes = this.renderNodes.bind(this);
   }
 
-  componentDidMount() {
-
-  }
-
   populateNodes() {
     const { nodes } = this.props;
 
@@ -25,7 +21,6 @@ class Tree extends React.Component {
     if (!nodes) {
       return ''
     } else {
-      // debugger;
       return nodes.map(node => (
         <Node key={node.id} data={node}/>
       )
@@ -34,12 +29,6 @@ class Tree extends React.Component {
   }
 
   render() {
-    // const { nodes, fetchChildren } = this.props;
-    // const nodeDetails = nodes.map(node => (
-    //     <Node key={node.id} data={node} fetchChildren={fetchChildren}/>
-    //   )
-    // );
-
     return(
 
         <ul>

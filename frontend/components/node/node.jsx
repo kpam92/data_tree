@@ -49,7 +49,7 @@ class Node extends React.Component {
   render() {
 
     const { data } = this.props;
-    const children = data.child_count > 0 ? `[${data.child_count}]` : '';
+    const children = data.child_count > 0 ? `[ ${data.child_count} ]` : '';
     const child_ul = this.state.ul == 'null' ? '' : this.renderUl()
     return(
       <li>
