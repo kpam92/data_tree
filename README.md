@@ -7,7 +7,7 @@
 
 DataTree is a small full-stack web application with Ruby on Rails in the backend with a PostgreSQL database, and JavaScript with React on the frontend. This application consists of data scraped from ImageNet (http://imagenet.stanford.edu/), parsed into a database, then displayed for the user.
 
-<a href="http://flipthru.herokuapp.com">
+<a href="http://data-tree.herokuapp.com">
   <img src="https://raw.githubusercontent.com/kpam92/data_tree/master/app/assets/images/screenshot.png"/>
 </a>
 
@@ -55,9 +55,7 @@ After opening all of the contents, I created a DFS function that iterated over a
   function traverseTreeUd(element, currClass) {
     Array.prototype.forEach.call(element.children, function(child) {
       if (child.tagName == 'LI') {
-        // console.log('hi')
         traverseTreeLi(child,currClass);
-
       }
     });
   }
@@ -176,7 +174,7 @@ These parts above create a structure like that below:
 }
 ```
 
-### 3. Visualizing for the User
+### 4. Visualizing for the User
 
 With over 30,000 nodes in our database, React is a good manner to display the data, because of its easy method of reusing class components, and by integrating clicking event listeners, we will be able to only grab necessary data from the backend to display for the user efficiently. There are two main components, the `Tree` component that holds the initial `ul`, and the `Node` component that stores the individual nodes themselves. Upon clicking a node with children, this triggers a new `Tree` > `Node` element.
 
