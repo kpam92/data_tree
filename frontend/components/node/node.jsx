@@ -6,8 +6,11 @@ class Node extends React.Component {
   }
 
   render() {
+    const { data } = this.props
     return(
-      <h1>this is a node</h1>
+      <li>
+        <h5>{data.path}</h5>
+      </li>
     )
   }
 }

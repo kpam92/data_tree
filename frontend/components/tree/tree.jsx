@@ -1,4 +1,5 @@
 import React from 'react';
+import Node from '../node/node';
 
 class Tree extends React.Component {
   constructor(props){
@@ -11,7 +12,7 @@ class Tree extends React.Component {
   }
 
   populateNodes() {
-    var { nodes } = this.props;
+    const { nodes } = this.props;
 
   }
   handleClick() {
@@ -19,8 +20,18 @@ class Tree extends React.Component {
   }
 
   render() {
+    const { nodes } = this.props;
+    const nodeDetails = nodes.map(node => (
+        <Node key={node.id} data={node}/>
+      )
+    );
+
     return(
-      <h1>Tree talking</h1>
+      <div>
+        <ul>
+          {nodeDetails}
+        </ul>
+      </div>
     )
   }
 };

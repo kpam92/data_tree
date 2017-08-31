@@ -14,8 +14,8 @@ class Root extends React.Component {
 
   render() {
 
-    var {store} = this.props;
-    var root_node = {id: 67, path: "ImageNet 2011 Fall Release"}
+    const {store} = this.props;
+    const root_node = {id: 67, path: "ImageNet 2011 Fall Release"}
     return(
       <Provider store={ store }>
         <TreeContainer nodes={[root_node]}/>
