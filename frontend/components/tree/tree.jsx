@@ -1,5 +1,5 @@
 import React from 'react';
-import NodeContainer from '../node/node_container';
+import Node from '../node/node';
 
 class Tree extends React.Component {
   constructor(props){
@@ -21,13 +21,13 @@ class Tree extends React.Component {
   }
 
   renderNodes() {
-    const { nodes, fetchChildren } = this.props;
+    const { nodes } = this.props;
     if (!nodes) {
       return ''
     } else {
       // debugger;
       return nodes.map(node => (
-        <NodeContainer key={node.id} data={node}/>
+        <Node key={node.id} data={node}/>
       )
     );
     }
@@ -36,7 +36,7 @@ class Tree extends React.Component {
   render() {
     // const { nodes, fetchChildren } = this.props;
     // const nodeDetails = nodes.map(node => (
-    //     <NodeContainer key={node.id} data={node} fetchChildren={fetchChildren}/>
+    //     <Node key={node.id} data={node} fetchChildren={fetchChildren}/>
     //   )
     // );
 

@@ -1,4 +1,4 @@
-import TreeContainer from '../tree/tree_container';
+import Tree from '../tree/tree';
 import React from 'react';
 
 import { fetchChildren } from '../../util/node_api_util';
@@ -18,7 +18,7 @@ class Node extends React.Component {
     this.fetchChildren(data.id).then(nodes => {
       debugger;
       this.setState({ 'ul' :(nodes.map(node => (
-        <TreeContainer key={data.id} nodes={nodes}/>
+        <Tree key={data.id} nodes={nodes}/>
       )
     ))})
     })
