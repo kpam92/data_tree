@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 
 import { UPDATE_SEARCH } from '../actions/search_actions';
 
-const SearchReducer = (state = {}, action) => {
+const SearchReducer = (state = [], action) => {
   Object.freeze(state)
   let newState = merge({}, state);
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Node from '../node/node';
-import Result from './result'
+import Result from './result';
+
 class Search extends React.Component {
   constructor(props){
     super(props)
@@ -22,6 +23,7 @@ class Search extends React.Component {
 
   renderResults() {
     const { results } = this.props;
+    debugger;
     return results.map((result,idx) => (
       <Result key={result.id} data={result}/>
     ));
