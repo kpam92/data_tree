@@ -37,6 +37,8 @@ class Search extends React.Component {
             onChange={this.updateSearch()}
             className="input"
             placeholder="e.g. marsupial"
+            pattern=".{4,}"
+            required title="3 characters minimum"
             required/>
           <button>Search</button>
         </form>
