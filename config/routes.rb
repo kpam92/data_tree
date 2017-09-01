@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :nodes, only: [:show,:index] do
       # resources :children, only: [:index]
       get 'children', :on => :member
+      get 'path', :on => :member
     end
 
   # get 'children', to: 'nodes#show_children'
