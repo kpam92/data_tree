@@ -1,5 +1,7 @@
 import React from 'react';
 import Tree from './tree/tree';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 import Search from './search/search';
 
 class Root extends React.Component {
@@ -12,12 +14,16 @@ class Root extends React.Component {
     const {store} = this.props;
     const root_node = {id: 1, path: "ImageNet 2011 Fall Release", child_count: 9}
     return(
-      <div className='container'>
-        <Search/>
-        <div className="tree-container">
-          <Tree nodes={[root_node]}/>
-        </div>
-      </div>
+      <Provider store={ store }>
+        <HashRouter>
+          <div className='container'>
+            <Search/>
+            <div className="tree-container">
+              <Tree nodes={[root_node]}/>
+            </div>
+          </div>
+        </HashRouter>
+      </Provider>
     )
   }
 }
