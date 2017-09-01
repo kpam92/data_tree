@@ -8,7 +8,6 @@ const SearchReducer = (state = {}, action) => {
 
   switch(action.type) {
     case UPDATE_SEARCH:
-      debugger;
       return action.results;
     // case REMOVE_USER:
     //   return {};
