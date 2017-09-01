@@ -23,7 +23,7 @@ class Search extends React.Component {
 
   renderResults() {
     const { results } = this.props;
-    debugger;
+
     return results.map((result,idx) => (
       <Result key={result.id} data={result}/>
     ));
@@ -41,7 +41,7 @@ class Search extends React.Component {
           <button>Search</button>
         </form>
         <div className="search-results">
-          {this.renderResults()}
+          {this.props.results.length > 0 ? this.renderResults() : ''}
         </div>
       </div>
 

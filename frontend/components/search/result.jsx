@@ -1,5 +1,7 @@
 import React from 'react';
 
-export const Result = () => (
-  <h1>hi</h1>
+ const Result = ({ data }) => (
+  <h1>{data.path}</h1>
 );
+
+export default Result;
