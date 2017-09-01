@@ -11,7 +11,8 @@ class Search extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    let newSearch = this.state.currSearch;
+    let searchString = this.state.currSearch;
+    this.props.newSearch(searchString)
     debugger;
   }
 

@@ -3,7 +3,7 @@
 // export const RECEIVE_PHOTOS = 'RECEIVE_PHOTOS';
 //
 // export const RECEIVE_PHOTO = 'RECEIVE_PHOTO';
-// export const UPDATE_PHOTO = 'UPDATE_PHOTO';
+export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 //
 // export const receivePhotos = photos => ({
 //   type: RECEIVE_PHOTOS,
@@ -13,10 +13,10 @@
 //   type: RECEIVE_PHOTO,
 //   photo
 // });
-// export const updatePhoto = photo => ({
-//   type: UPDATE_PHOTO,
-//   photo
-// });
+export const updateSearch = results => ({
+  type: UPDATE_SEARCH,
+  results
+});
 //
 // export const fetchPhotos = () => dispatch => (
 //   APIUtil.fetchPhotos().then(photos => (
@@ -30,8 +30,8 @@
 //   ))
 // );
 //
-// export const fetchPhoto = (id) => dispatch => (
-//   APIUtil.fetchPhoto(id).then(photo => (
-//     dispatch(updatePhoto(photo))
-//   ))
-// );
+export const newSearch = (search_string) => dispatch => (
+  APIUtil.newSearch(search_string).then(results => (
+    dispatch(updateSearch(results))
+  ))
+);

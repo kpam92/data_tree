@@ -2,7 +2,7 @@ import React from 'react';
 import Tree from './tree/tree';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import Search from './search/search';
+import SearchContainer from './search/search_container';
 
 class Root extends React.Component {
   constructor() {
@@ -17,7 +17,7 @@ class Root extends React.Component {
       <Provider store={ store }>
         <HashRouter>
           <div className='container'>
-            <Search/>
+            <SearchContainer/>
             <div className="tree-container">
               <Tree nodes={[root_node]}/>
             </div>
