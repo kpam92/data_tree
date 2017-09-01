@@ -1,1 +1,3 @@
-json.partial! "api/nodes/node", node: @node
+json.array!(@nodes) do |node|
+  json.partial!('node', node: node)
+end

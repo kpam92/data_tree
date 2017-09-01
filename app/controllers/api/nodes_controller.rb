@@ -5,7 +5,8 @@ class Api::NodesController < ApplicationController
   end
 
   def show
-    @node = Node.find(params[:id])
+    curr_search = params[:id].downcase
+    @nodes = Node.where("path LIKE ? ", "%#{curr_search}%")
   end
 
   def children
