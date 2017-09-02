@@ -10,7 +10,7 @@ class Api::NodesController < ApplicationController
     @nodes = Node.where("path LIKE ? ", "%#{curr_search}%")
   end
 
-  def node_path
+  def path
     node = Node.find(params[:id])
     @results = [node.path]
     until node.parent_id.nil?
@@ -18,7 +18,6 @@ class Api::NodesController < ApplicationController
       @results.unshift(node.path)
     end
 
-    # Next do the json builder for this, then a function for displaying this information'
     @results
   end
 
