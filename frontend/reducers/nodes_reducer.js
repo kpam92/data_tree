@@ -8,7 +8,6 @@ const NodesReducer = (state = [], action) => {
 
   switch(action.type) {
     case UPDATE_NODE_PATH:
-      debugger;
       return action.results;
     // case RECEIVE_PHOTO:
     //   const newPhoto = {[action.photo.id]: action.photo};

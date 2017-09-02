@@ -1,7 +1,7 @@
 import React from 'react';
 
- const Result = ({ data }) => (
-  <h1>{data.path}</h1>
+ const Result = ({ data,handleSearchClick }) => (
+  <h5 onClick={handleSearchClick}>{data.path}</h5>
 );
 
 export default Result;

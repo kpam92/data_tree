@@ -9,6 +9,7 @@ class Search extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
     this.renderResults = this.renderResults.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
   }
 
   handleClick(e) {
@@ -21,11 +22,16 @@ class Search extends React.Component {
     return e => this.setState({currSearch: e.target.value})
   }
 
+  handleSearchClick(id){
+    const { newPath } = this.props;
+    newPath(id);
+  }
+
   renderResults() {
     const { results } = this.props;
 
     return results.map((result,idx) => (
-      <Result key={result.id} data={result}/>
+      <Result key={result.id} data={result} handleSearchClick={this.handleSearchClick.bind(this,result.id)}/>
     ));
   }
   render() {
