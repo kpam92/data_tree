@@ -1,9 +1,9 @@
-// import * as APIUtil from '../util/photo_api_util'
+import * as APIUtil from '../util/node_api_util'
 //
 // export const RECEIVE_PHOTOS = 'RECEIVE_PHOTOS';
 //
 // export const RECEIVE_PHOTO = 'RECEIVE_PHOTO';
-export const UPDATE_SEARCH = 'UPDATE_SEARCH';
+export const UPDATE_NODE_PATH = 'UPDATE_NODE_PATH';
 //
 // export const receivePhotos = photos => ({
 //   type: RECEIVE_PHOTOS,
@@ -13,8 +13,8 @@ export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 //   type: RECEIVE_PHOTO,
 //   photo
 // });
-export const updateSearch = results => ({
-  type: UPDATE_SEARCH,
+export const updateNodePath = results => ({
+  type: UPDATE_NODE_PATH,
   results
 });
 //
@@ -30,8 +30,8 @@ export const updateSearch = results => ({
 //   ))
 // );
 //
-export const newSearch = (search_string) => dispatch => (
-  APIUtil.newSearch(search_string).then(results => (
-    dispatch(updateSearch(results))
+export const newPath = (id) => dispatch => (
+  APIUtil.fetchPath(id).then(results => (
+    dispatch(updateNodePath(results))
   ))
 );

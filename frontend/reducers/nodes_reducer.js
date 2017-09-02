@@ -1,15 +1,15 @@
 import merge from 'lodash/merge';
 
-// import { RECEIVE_PHOTOS, RECEIVE_PHOTO, UPDATE_PHOTO } from '../actions/photo_actions';
-// import { RECEIVE_LIKE, DELETE_LIKE } from '../actions/like_actions';
+import { UPDATE_NODE_PATH } from '../actions/node_actions';
 
-const NodesReducer = (state = {}, action) => {
+const NodesReducer = (state = [], action) => {
   Object.freeze(state)
-  let newState = merge({}, state);
+  // let newState = merge({}, state);
 
   switch(action.type) {
-    // case RECEIVE_PHOTOS:
-    //   return action.photos;
+    case UPDATE_NODE_PATH:
+      debugger;
+      return action.results;
     // case RECEIVE_PHOTO:
     //   const newPhoto = {[action.photo.id]: action.photo};
     //   return merge({}, state, newPhoto);

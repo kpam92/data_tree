@@ -3,7 +3,7 @@ import SearchReducer from './search_reducer';
 import NodesReducer from './nodes_reducer';
 
 const rootReducer = combineReducers({
-  nodes: NodesReducer,
+  curr_node_path: NodesReducer,
   search: SearchReducer
 });
 
