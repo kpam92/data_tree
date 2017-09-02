@@ -17,7 +17,8 @@ class Api::NodesController < ApplicationController
       node = node.parent
       @results.unshift(node.path)
     end
-    byebug
+
+    # Next do the json builder for this, then a function for displaying this information'
     @results
   end
 
@@ -25,3 +26,14 @@ class Api::NodesController < ApplicationController
     @nodes = Node.find(params[:id]).children
   end
 end
+
+# Node.all.each do |node|
+#   node.child_count = 0 if node.child_count.nil?
+#   node.save
+# end
+
+# Node.all.each do |node|
+#   child_node_count = (node.children.map(&:child_count).reduce(&:+)|| 0) + node.children.count
+#   node.child_count = child_node_count
+#   node.save
+# end
