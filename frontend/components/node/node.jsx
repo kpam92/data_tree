@@ -27,9 +27,12 @@ class Node extends React.Component {
 
   checkPath(){
     const { curr_node_path, data,shiftNodePathOne } = this.props;
-    if (curr_node_path[0] == data.path) {
+
+    if (curr_node_path[0] == data.path && curr_node_path.length > 1) {
       shiftNodePathOne();
       this.getChildren('path');
+    } else if (curr_node_path[0] == data.path) {
+      shiftNodePathOne();
     }
   }
 

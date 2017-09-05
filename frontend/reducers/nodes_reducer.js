@@ -11,17 +11,7 @@ const NodesReducer = (state = [], action) => {
       return action.results;
     case SHIFT_NODE_PATH_ONE:
       newState.shift();
-      debugger;
       return newState;
-    // case RECEIVE_PHOTO:
-    //   const newPhoto = {[action.photo.id]: action.photo};
-    //   return merge({}, state, newPhoto);
-    // case UPDATE_PHOTO:
-    // newState[action.photo.id - 1]= action.photo
-    //   return newState
-    // case DELETE_LIKE:
-    //   newState = {[action.like.author_id]: action.photo};
-    //   return merge({}, state, newPhoto);
     default:
       return state;
   }
