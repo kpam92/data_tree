@@ -6,7 +6,13 @@ import SearchContainer from './search/search_container';
 
 class Root extends React.Component {
   constructor() {
-    super()
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    debugger;
+    this.render()
   }
 
   render() {
@@ -21,7 +27,7 @@ class Root extends React.Component {
             <div className="tree-container">
               <Tree nodes={[root_node]}/>
             </div>
-            <div className="top-arrow"></div>
+
           </div>
         </HashRouter>
       </Provider>

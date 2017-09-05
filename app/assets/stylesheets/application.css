@@ -66,19 +66,74 @@ ul.tree li.last-child {
 .search-container {
   position: fixed;
   right: 10%;
+  width: 400px;
+  text-align: center;
+  border: 1px solid #cacaca;
 }
 
+.search-container form {
+  padding: 10px 0;
+}
+.search-container input {
+  width: 200px;
+  padding: 10px;
+  font-size: 12px;
+}
+.search-results h5 {
+    padding: 0px 30px;
+}
 .search-results {
   height: 500px;
   overflow:scroll;
+  background: #f6f6f6;
 }
 
-#top-arrow {
-  background: url(http://res.cloudinary.com/dt5viyxyq/image/upload/c_scale,h_77/v1504647554/top_n54zea.png) no-repeat;
+
+form button {
+  background-color: darkgrey;
+  border: none;
+  color: white;
+  padding: 11px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-left: 14px;
+
+}
+
+/*.re-render {
   position: fixed;
-  right: 10%;
-  bottom: 10%;
-  background-size: contain;
-  width: 40px;
-  height: 40px;
+  bottom: 20px;
+  right: 90px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkgrey;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 11px;
+}*/
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: darkgrey;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
 }
