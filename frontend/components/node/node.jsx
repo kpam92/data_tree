@@ -23,6 +23,7 @@ class Node extends React.Component {
   }
   componentDidUpdate(){
     this.checkPath();
+
     if (document.getElementsByClassName('highlight').length == 1) {
       const currHighlight = document.getElementsByClassName('highlight')[0];
       window.scrollTo(0,currHighlight.offsetTop - 40);
@@ -41,9 +42,6 @@ class Node extends React.Component {
     } else if (curr_node_path[0] == data.path) {
       shiftNodePathOne();
       this.setState({'highlight':'highlight'})
-      // debugger;
-      // const currHighlight = document.getElementsByClassName('highlight')[0];
-      // window.scrollTo(0,currHighlight.offsetTop);
     }
   }
 

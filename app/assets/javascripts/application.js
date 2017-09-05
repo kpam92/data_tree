@@ -20,6 +20,11 @@ document.addEventListener("click", () => {
   for(var i = 0; i < slides.length; i++)
   {
      slides.item(i).classList.remove('highlight');
-     debugger;
+
   }
 });
+
+// var topButton = document.getElementById("top-arrow");
+// document.getElementById("top-arrow").addEventListener("click", () => {
+//   window.scrollTo(0,0);
+// });

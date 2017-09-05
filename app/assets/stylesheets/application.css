@@ -62,3 +62,23 @@ ul.tree li.last-child {
 .show {
   display: block;
 }
+
+.search-container {
+  position: fixed;
+  right: 10%;
+}
+
+.search-results {
+  height: 500px;
+  overflow:scroll;
+}
+
+#top-arrow {
+  background: url(http://res.cloudinary.com/dt5viyxyq/image/upload/c_scale,h_77/v1504647554/top_n54zea.png) no-repeat;
+  position: fixed;
+  right: 10%;
+  bottom: 10%;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+}

@@ -36,7 +36,7 @@ class Search extends React.Component {
   }
   render() {
     return(
-      <div>
+      <div className='search-container'>
         <form onSubmit={this.handleClick}>
           <input
             value={this.state.currNewSearch}
