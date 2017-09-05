@@ -14,35 +14,54 @@ class Node extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.toggleVisibility = this.toggleVisibility.bind(this);
     this.renderUl = this.renderUl.bind(this);
+    this.getChildren = this.getChildren.bind(this);
+    this.checkPath = this.checkPath.bind(this);
     this.fetchChildren = fetchChildren;
   }
   componentDidUpdate(){
-    const { curr_node_path } = this.props;
-    debugger;
+    this.checkPath();
+  }
+  componentWillMount(){
+    this.checkPath();
+  }
+
+  checkPath(){
+    const { curr_node_path, data,shiftNodePathOne } = this.props;
+    if (curr_node_path[0] == data.path) {
+      shiftNodePathOne();
+      this.getChildren('path');
+    }
   }
 
   handleClick(e) {
     e.preventDefault();
+    this.getChildren('click');
+  }
+
+  getChildren(action){
     var { data, nodes } = this.props;
     if (data.child_count > 0 && !this.state.ul) {
-      this.toggleVisibility();
+      this.toggleVisibility('click');
       this.fetchChildren(data.id).then(nodes => {
 
         this.setState({ 'ul' :(<Tree key={`tree-${data.id}`} nodes={nodes}/>)});
       })
     } else if (this.state.ul) {
-      this.toggleVisibility();
+      this.toggleVisibility(action);
     }
   }
-
 
 
   componentDidMount() {
 
   }
-  toggleVisibility() {
-    var css = (this.state.childVisible === "hidden") ? "show" : "hidden";
-    this.setState({"childVisible": css});
+  toggleVisibility(action) {
+    if (action == 'click') {
+      var css = (this.state.childVisible === "hidden") ? "show" : "hidden";
+      this.setState({"childVisible": css});
+    } else if (action == 'path') {
+      this.setState({"childVisible": "show"})
+    }
   }
 
   renderUl() {
