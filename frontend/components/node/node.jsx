@@ -16,7 +16,7 @@ class Node extends React.Component {
     this.renderUl = this.renderUl.bind(this);
     this.fetchChildren = fetchChildren;
   }
-  componentDidUpdate(){
+  componentDidMount(){
     const { curr_node_path } = this.props;
     debugger;
   }
