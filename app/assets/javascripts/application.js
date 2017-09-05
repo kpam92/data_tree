@@ -13,3 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+document.addEventListener("click", () => {
+  var slides = document.getElementsByClassName("highlight");
+  for(var i = 0; i < slides.length; i++)
+  {
+     slides.item(i).classList.remove('highlight');
+     debugger;
+  }
+});

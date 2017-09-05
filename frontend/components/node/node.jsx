@@ -1,5 +1,7 @@
 import Tree from '../tree/tree';
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 
 import { fetchChildren } from '../../util/node_api_util';
 
@@ -8,7 +10,8 @@ class Node extends React.Component {
     super(props)
     this.state = {
       ul: null,
-      childVisible: 'hidden'
+      childVisible: 'hidden',
+      highlight: ''
      }
 
     this.handleClick = this.handleClick.bind(this);
@@ -20,6 +23,10 @@ class Node extends React.Component {
   }
   componentDidUpdate(){
     this.checkPath();
+    if (document.getElementsByClassName('highlight').length == 1) {
+      const currHighlight = document.getElementsByClassName('highlight')[0];
+      window.scrollTo(0,currHighlight.offsetTop - 40);
+    }
   }
   componentWillMount(){
     this.checkPath();
@@ -33,6 +40,10 @@ class Node extends React.Component {
       this.getChildren('path');
     } else if (curr_node_path[0] == data.path) {
       shiftNodePathOne();
+      this.setState({'highlight':'highlight'})
+      // debugger;
+      // const currHighlight = document.getElementsByClassName('highlight')[0];
+      // window.scrollTo(0,currHighlight.offsetTop);
     }
   }
 
@@ -54,10 +65,6 @@ class Node extends React.Component {
     }
   }
 
-
-  componentDidMount() {
-
-  }
   toggleVisibility(action) {
     if (action == 'click') {
       var css = (this.state.childVisible === "hidden") ? "show" : "hidden";
@@ -78,7 +85,9 @@ class Node extends React.Component {
     const child_ul = this.state.ul == 'null' ? '' : this.renderUl()
     return(
       <li className={lastChild ? 'last-child': ''}>
-        <a onClick={this.handleClick}>{data.path} {children}</a>
+        <div className={this.state.highlight} ref={`node-${data.id}`}>
+          <a onClick={this.handleClick}>{data.path} {children}</a>
+        </div>
         <div className={this.state.childVisible}>
           {child_ul}
         </div>

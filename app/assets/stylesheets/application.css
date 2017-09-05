@@ -21,6 +21,10 @@
  a:hover {
    cursor: pointer;
  }
+ .highlight a {
+   background: yellow;
+   border: 1px solid orange;
+ }
  .tree-container {
    margin-top: 20px;
  }
