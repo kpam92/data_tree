@@ -49,6 +49,7 @@ ul.tree li {
   line-height: 20px;
   background: url(http://res.cloudinary.com/dt5viyxyq/image/upload/v1504208105/node_mohdp1.png) no-repeat;
   font-weight: bold;
+  width: 500px;
 }
 
 ul.tree li.last-child {
@@ -81,6 +82,7 @@ ul.tree li.last-child {
 }
 .search-results h5 {
     padding: 0px 30px;
+    cursor: pointer;
 }
 .search-results {
   height: 500px;

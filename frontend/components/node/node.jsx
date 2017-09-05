@@ -83,7 +83,7 @@ class Node extends React.Component {
     const child_ul = this.state.ul == 'null' ? '' : this.renderUl()
     return(
       <li className={lastChild ? 'last-child': ''}>
-        <div className={this.state.highlight} ref={`node-${data.id}`}>
+        <div className={this.state.highlight}>
           <a onClick={this.handleClick}>{data.path} {children}</a>
         </div>
         <div className={this.state.childVisible}>
