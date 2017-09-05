@@ -178,13 +178,13 @@ These parts above create a structure like that below:
 
 With over 30,000 nodes in our database, React is a good manner to display the data, because of its easy method of reusing class components, and by integrating clicking event listeners, we will be able to only grab necessary data from the backend to display for the user efficiently. There are two main components, the `Tree` component that holds the initial `ul`, and the `Node` component that stores the individual nodes themselves. Upon clicking a node with children, this triggers a new `Tree` > `Node` element.
 
+### 5. Searching through the Tree
+
+The search component queries the database and returns matching elements. When an element is clicked, this triggers a an action that makes an api call to a custom `path` route, `/api/nodes/:id/path`. This returns an array of the path to this element and stores it in the node's `curr_node_path` state. Each node component is attached to the path state, and when props are updated, each node within the path opens up until the selected element is revealed and highlighted.
+
 ## Future Directions for the Project
 
 I plan to add small adjustments to the project to provide better UX/UI for the user
-
-### Search Component
-
-In process of implementing a dynamic search component that will show results for matching elements, and when a search result is clicked, it will open that path on the tree.
 
 ### Styling
 
