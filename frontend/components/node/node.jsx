@@ -16,14 +16,13 @@ class Node extends React.Component {
     this.renderUl = this.renderUl.bind(this);
     this.fetchChildren = fetchChildren;
   }
-  componentDidMount(){
+  componentDidUpdate(){
     const { curr_node_path } = this.props;
     debugger;
   }
 
   handleClick(e) {
     e.preventDefault();
-
     var { data, nodes } = this.props;
     if (data.child_count > 0 && !this.state.ul) {
       this.toggleVisibility();
