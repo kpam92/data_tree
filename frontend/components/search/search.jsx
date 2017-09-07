@@ -22,16 +22,17 @@ class Search extends React.Component {
     return e => this.setState({currSearch: e.target.value})
   }
 
-  handleSearchClick(id){
-    const { newPath } = this.props;
-    newPath(id);
+  handleSearchClick(result){
+    const { newPath, updateFocus } = this.props;
+    updateFocus(result.path);
+    newPath(result.id);
   }
 
   renderResults() {
     const { results } = this.props;
 
     return results.map((result,idx) => (
-      <Result key={result.id} data={result} handleSearchClick={this.handleSearchClick.bind(this,result.id)}/>
+      <Result key={result.id} data={result} handleSearchClick={this.handleSearchClick.bind(this,result)}/>
     ));
   }
   render() {

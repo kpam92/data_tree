@@ -20,6 +20,7 @@
 
  a:hover {
    cursor: pointer;
+   background: #c7e3ff;
  }
  .highlight a {
    background: yellow;
@@ -79,6 +80,9 @@ ul.tree li.last-child {
   width: 200px;
   padding: 10px;
   font-size: 12px;
+}
+.search-container input:focus {
+  outline: 0;
 }
 .search-results h5 {
     padding: 0px 30px;

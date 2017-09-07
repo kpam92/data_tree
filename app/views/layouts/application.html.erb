@@ -5,35 +5,21 @@
     <link rel="icon" href="http://res.cloudinary.com/dt5viyxyq/image/upload/v1504206619/tree_wfe3t8.ico">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script>
-    document.addEventListener("click", () => {
-  var slides = document.getElementsByClassName("highlight");
-  for(var i = 0; i < slides.length; i++)
-  {
-     slides.item(i).classList.remove('highlight');
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function() {scrollFunction()};
 
-  }
-});
+      function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              document.getElementById("myBtn").style.display = "block";
+          } else {
+              document.getElementById("myBtn").style.display = "none";
+          }
+      }
 
-// var topButton = document.getElementById("top-arrow");
-// document.getElementById("top-arrow").addEventListener("click", () => {
-//   window.scrollTo(0,0);
-// });
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
-}
-
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
+      function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+      }
     </script>
     <%= csrf_meta_tags %>
 

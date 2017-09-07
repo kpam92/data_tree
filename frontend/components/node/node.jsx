@@ -7,8 +7,7 @@ class Node extends React.Component {
     super(props)
     this.state = {
       ul: null,
-      childVisible: 'hidden',
-      highlight: ''
+      childVisible: 'hidden'
      }
 
     this.handleClick = this.handleClick.bind(this);
@@ -38,12 +37,13 @@ class Node extends React.Component {
       this.getChildren('path');
     } else if (curr_node_path[0] == data.path) {
       shiftNodePathOne();
-      this.setState({'highlight':'highlight'})
     }
   }
 
   handleClick(e) {
+    const { data, updateFocus } = this.props;
     e.preventDefault();
+    updateFocus(data.path);
     this.getChildren('click');
   }
 
@@ -75,12 +75,12 @@ class Node extends React.Component {
 
   render() {
 
-    const { data, lastChild } = this.props;
+    const { data, lastChild, focus } = this.props;
     const children = data.child_count > 0 ? `[ ${data.child_count} ]` : '';
     const child_ul = this.state.ul == 'null' ? '' : this.renderUl()
     return(
       <li className={lastChild ? 'last-child': ''}>
-        <div className={this.state.highlight}>
+        <div className={focus == data.path ? 'highlight' : ''}>
           <a onClick={this.handleClick}>{data.path} {children}</a>
         </div>
         <div className={this.state.childVisible}>
