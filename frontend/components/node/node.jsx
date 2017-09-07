@@ -1,8 +1,5 @@
 import Tree from '../tree/tree';
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-
 import { fetchChildren } from '../../util/node_api_util';
 
 class Node extends React.Component {

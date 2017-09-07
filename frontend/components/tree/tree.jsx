@@ -4,16 +4,7 @@ import NodeContainer from '../node/node_container';
 class Tree extends React.Component {
   constructor(props){
     super(props)
-    this.handleClick = this.handleClick.bind(this);
     this.renderNodes = this.renderNodes.bind(this);
-  }
-
-  populateNodes() {
-    const { nodes } = this.props;
-
-  }
-  handleClick() {
-
   }
 
   renderNodes() {
