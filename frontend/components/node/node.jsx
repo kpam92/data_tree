@@ -62,7 +62,7 @@ class Node extends React.Component {
 
   toggleVisibility(action) {
     if (action == 'click') {
-      var css = (this.state.childVisible === "hidden") ? "show" : "hidden";
+      var css = (this.state.childVisible == "hidden") ? "show" : "hidden";
       this.setState({"childVisible": css});
     } else if (action == 'path') {
       this.setState({"childVisible": "show"})
