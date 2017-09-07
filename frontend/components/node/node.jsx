@@ -19,7 +19,13 @@ class Node extends React.Component {
   }
   componentDidUpdate(){
     this.checkPath();
+
+    if (document.getElementsByClassName('highlight').length == 1) {
+      const currHighlight = document.getElementsByClassName('highlight')[0];
+      window.scrollTo(0,currHighlight.offsetTop - 300);
+    }
   }
+
   componentWillMount(){
     this.checkPath();
   }
@@ -32,8 +38,6 @@ class Node extends React.Component {
       this.getChildren('path');
     } else if (curr_node_path[0] == data.path) {
       shiftNodePathOne();
-      const currHighlight = document.getElementsByClassName('highlight')[0];
-      window.scrollTo(0,currHighlight.offsetTop - 40);
     }
   }
 
